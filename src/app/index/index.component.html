@@ -1,0 +1,42 @@
+<ng-container class="flex padding-10 font-color">
+  <h1 class="flex center font-color">One Click Demo</h1>
+  @for (workItem of workItems; track workItem.idx) {
+    <mat-card appearance="raised">
+      <mat-card-title class="margin-left-1em">Powermeter {{workItem.idx}}</mat-card-title>
+      <mat-card-content class="flex row overflow-hidden">
+      @for (analysis of getAnalyses(workItem); track analysis.idx) {
+        <mat-card appearance="raised" class="inner-card">
+          <mat-card-title class="margin-left-quarterem" class="font-color"><span class="font-color">
+            Photo {{analysis.idx}}
+            @if (analysis.status === 'analysis_ok') {
+              <mat-icon class="size-s" fontIcon="check_circle" style="color: green;"></mat-icon>
+            } @else if (analysis.status === 'analysis_ko') {
+              <mat-icon class="size-s" fontIcon="error" style="color: red;"></mat-icon>
+            } @else if (analysis.status === 'conformity_error') {
+              <mat-icon class="size-s" fontIcon="report_problem" style="color: orange;"></mat-icon>
+            } @else {
+              <mat-icon class="size-s" fontIcon="error" style="color: orange;"></mat-icon>
+            }
+          </span></mat-card-title>
+          <div>
+            <button mat-button (click)="onAnalysisClicked(workItem, analysis)"><span class="font-color">View</span></button>
+          </div>
+        </mat-card>
+      }
+      </mat-card-content>
+      <div>
+        <button mat-button (click)="onWorkItemClicked(workItem)"><span class="font-color">Retake Photo</span></button>
+      </div>
+      <mat-card-footer>
+        <mat-progress-bar mode="determinate" [value]="workItem.progress" [color]="getProgressColor(workItem)" />
+      </mat-card-footer>
+    </mat-card>
+  }
+  <mat-card class="flex center" appearance="raised">
+    <mat-card-actions>
+      <button mat-button (click)="onAddItemClicked()">
+        <mat-icon class="size-xxl" fontIcon="add"/>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>
