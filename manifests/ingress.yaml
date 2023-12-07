@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: connector-demo
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: connector-demo.k8s.stag.deepomatic.com
+    networking.gke.io/managed-certificates: connector-demo
+    networking.gke.io/v1beta1.FrontendConfig: connector-demo
+spec:
+  rules:
+  - host: connector-demo.k8s.stag.deepomatic.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: connector-demo
+            port:
+              number: 4201

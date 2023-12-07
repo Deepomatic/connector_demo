@@ -1,0 +1,10 @@
+.angular
+node_modules
+dist
+.vscode
+manifests
+.editorconfig
+.gitignore
+.dockerignore
+Dockerfile
+Makefile
