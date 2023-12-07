@@ -1,0 +1,7 @@
+apiVersion: networking.gke.io/v1beta1
+kind: FrontendConfig
+metadata:
+  name: connector-demo
+  namespace: connector-demo
+spec:
+  sslPolicy: gke-ingress-ssl-policy-tls12-modern

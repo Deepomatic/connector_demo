@@ -1,0 +1,17 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+metadata:
+  name: connector-demo
+build:
+  tagPolicy:
+    customTemplate:
+      template: "latest"
+  artifacts:
+    - image: europe-west1-docker.pkg.dev/deepomatic-160015/docker-main/connector-demo
+      platforms: ["linux/amd64"]
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  kustomize:
+    paths:
+      - manifests

@@ -1,0 +1,8 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: connector-demo
+  namespace: connector-demo
+spec:
+  domains:
+    - connector-demo.k8s.stag.deepomatic.com

@@ -1,0 +1,72 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: connector-demo
+
+commonAnnotations:
+  kubernetes.io/change-cause: "connector-demo"
+
+images:
+  - name: connector-demo
+    newName: europe-west1-docker.pkg.dev/deepomatic-160015/docker-main/connector-demo
+    newTag: latest
+
+commonLabels:
+  app: connector-demo
+  product: vesta
+  tags.datadoghq.com/env: production
+  tags.datadoghq.com/service: connector-demo
+  app.kubernetes.io/name: connector-demo
+  app.kubernetes.io/instance: connector-demo-frontend
+  app.kubernetes.io/managed-by: kustomize
+  app.kubernetes.io/part-of: deepomatic
+
+resources:
+  - namespace.yaml
+  - service.yaml
+  - deployment.yaml
+  - managed-certificate.yaml
+  - backend-config.yaml
+  - frontend-config.yaml
+  - ingress.yaml
+
+generatorOptions:
+  labels:
+    app.kubernetes.io/name: connector-demo
+  disableNameSuffixHash: true
+
+patches:
+  - patch: |-
+      - op: add
+        path: /metadata/annotations
+        value:
+          external-dns.alpha.kubernetes.io/hostname: connector-demo.k8s.stag.deepomatic.com
+          networking.gke.io/managed-certificates: connector-demo
+          networking.gke.io/v1beta1.FrontendConfig: connector-demo
+    target:
+      kind: Ingress
+      name: connector-demo
+  - patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: connector-demo.k8s.stag.deepomatic.com
+    target:
+      kind: Ingress
+      name: connector-demo
+  - patch: |-
+      - op: replace
+        path: /spec/domains
+        value:
+        - connector-demo.k8s.stag.deepomatic.com
+    target:
+      kind: ManagedCertificate
+      name: connector-demo
+  - patch: |-
+      - op: add
+        path: /metadata/annotations
+        value:
+          beta.cloud.google.com/backend-config: '{"ports": {"4200":"connector-demo"}}'
+          cloud.google.com/neg: '{"ingress":true}'
+    target:
+      kind: Service
+      name: connector-demo
