@@ -1,0 +1,84 @@
+mat-icon {
+  color: #ddd;
+  margin-right: 0px !important;
+}
+
+.flex {
+  display: flex;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+mat-card {
+  background-color: #646472;
+  margin: 10px;
+  color: #ddd;
+  min-width: 90px;
+}
+
+.inner-card {
+  margin: 5px;
+  padding: 5px;
+  color: #ddd;
+  min-width: 90px;
+  height: 100%;
+}
+
+.card-ok {
+  background-color: transparentize($color: green, $amount: 0.7);
+}
+
+.card-warning {
+  background-color: transparentize($color: orange, $amount: 0.7);
+}
+
+.card-error {
+  background-color: transparentize($color: red, $amount: 0.7);
+}
+
+mat-progress-bar {
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 5px;
+  margin-bottom: 5px;
+  max-width: 90%;
+}
+
+.margin-left-1em {
+  margin-left: 1em;
+}
+
+.margin-left-quarterem {
+  margin-left: .25em;
+}
+
+mat-card-title {
+  color: #ddd;
+}
+
+.size-xxl {
+  transform: scale(3);
+}
+
+.row {
+  flex-direction: row;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.padding-10 {
+  padding: 10px;
+}
+
+mat-icon:hover {
+  cursor: pointer;
+}
+
+.font-color {
+  color: #ddd
+}
