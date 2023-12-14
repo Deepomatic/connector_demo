@@ -131,11 +131,11 @@ export class ConnectorComponent implements OnInit {
   }
 
   public onWorkItemClicked(workItem: WorkItem) {
-    window.location.href = `https://staging.vesta.deepomatic.com/field/connector/${this.oneClickToken}/work_item/${workItem.id}?state=${this.stateToSend}`;
+    window.location.href = `https://staging.vesta.deepomatic.com/field/connecto/work_item/${workItem.id}?state=${this.stateToSend}#token=${this.oneClickToken}`;
   }
 
   public onAnalysisClicked(workItem: WorkItem, analysis: Analysis) {
-    window.location.href = `https://staging.vesta.deepomatic.com/field/connector/${this.oneClickToken}/input/${analysis.input_id}?state=${this.stateToSend}`;
+    window.location.href = `https://staging.vesta.deepomatic.com/field/connector/input/${analysis.input_id}?state=${this.stateToSend}#token=${this.oneClickToken}`;
   }
 
   public onAddItemClicked() {
@@ -167,7 +167,7 @@ export class ConnectorComponent implements OnInit {
       })).toString('base64');
     }
     const params = Object.keys(paramsObj).map(key => `${key}=${paramsObj[key]}`).join('&');
-    window.location.href = `https://staging.vesta.deepomatic.com/field/connector/${this.oneClickToken}/work_item/create?${params}`;
+    window.location.href = `https://staging.vesta.deepomatic.com/field/connector/work_item/create?${params}#token=${this.oneClickToken}`;
   }
 
   public getProgressColor(workItem: WorkItem): ThemePalette {
