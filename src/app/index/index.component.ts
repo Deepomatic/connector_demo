@@ -39,6 +39,16 @@ export class IndexComponent {
         token: 'oneclickphotonoanalysis',
         returnFlow: 'before_analysis',
       },
+      {
+        idx: 3,
+        token: 'lensconnector',
+        returnFlow: 'after_analysis',
+      },
+      {
+        idx: 4,
+        token: 'lensconnectornoanalysis',
+        returnFlow: 'before_analysis',
+      },
     ];
   }
 
