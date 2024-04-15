@@ -1,7 +1,7 @@
 <ng-container>
   @for (connectorToken of connectorTokens; track connectorToken.idx) {
     <mat-card>
-      <mat-card-title><span class="font-color">Connector {{connectorToken.idx}}</span></mat-card-title>
+      <mat-card-title><span class="font-color">Connector {{connectorToken.idx}} - {{connectorToken.token}}</span></mat-card-title>
       <mat-card-content>
         <span class="font-color">Flow: {{connectorToken.returnFlow}}</span>
       </mat-card-content>

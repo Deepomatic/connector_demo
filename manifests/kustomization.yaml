@@ -9,7 +9,7 @@ commonAnnotations:
 images:
   - name: connector-demo
     newName: europe-west1-docker.pkg.dev/deepomatic-160015/docker-main/connector-demo
-    newTag: latest
+    newTag: 1.0.2
 
 commonLabels:
   app: connector-demo
