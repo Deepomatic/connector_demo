@@ -131,11 +131,25 @@ export class ConnectorComponent implements OnInit {
   }
 
   public onWorkItemClicked(workItem: WorkItem) {
-    window.location.href = `https://staging.vesta.deepomatic.com/field/connecto/work_item/${workItem.id}?state=${this.stateToSend}#token=${this.oneClickToken}`;
+    if (this.oneClickToken.startsWith('oneclickphoto')) {
+      window.location.href = `https://staging.vesta.deepomatic.com/field/connector/work_item/${workItem.id}?state=${this.stateToSend}#token=${this.oneClickToken}`;
+      return;
+    }
+    if (this.oneClickToken.startsWith('lensconnector')) {
+      window.location.href = `deepolens:///connector/eu/stag/work_item/${workItem.id}?state=${this.stateToSend}#token=${this.oneClickToken}`;
+      return;
+    }
   }
 
   public onAnalysisClicked(workItem: WorkItem, analysis: Analysis) {
-    window.location.href = `https://staging.vesta.deepomatic.com/field/connector/input/${analysis.input_id}?state=${this.stateToSend}#token=${this.oneClickToken}`;
+    if (this.oneClickToken.startsWith('oneclickphoto')) {
+      window.location.href = `https://staging.vesta.deepomatic.com/field/connector/input/${analysis.input_id}?state=${this.stateToSend}#token=${this.oneClickToken}`;
+      return;
+    }
+    if (this.oneClickToken.startsWith('lensconnector')) {
+      window.location.href = `deepolens:///connector/eu/stag/input/${analysis.input_id}?state=${this.stateToSend}#token=${this.oneClickToken}`;
+      return;
+    }
   }
 
   public onAddItemClicked() {
@@ -167,7 +181,14 @@ export class ConnectorComponent implements OnInit {
       })).toString('base64');
     }
     const params = Object.keys(paramsObj).map(key => `${key}=${paramsObj[key]}`).join('&');
-    window.location.href = `https://staging.vesta.deepomatic.com/field/connector/work_item/create?${params}#token=${this.oneClickToken}`;
+    if (this.oneClickToken.startsWith('oneclickphoto')) {
+      window.location.href = `https://staging.vesta.deepomatic.com/field/connector/work_item/create?${params}#token=${this.oneClickToken}`;
+      return;
+    }
+    if (this.oneClickToken.startsWith('lensconnector')) {
+      window.location.href = `deepolens:///connector/eu/stag/work_item/create?${params}#token=${this.oneClickToken}`;
+      return;
+    }
   }
 
   public getProgressColor(workItem: WorkItem): ThemePalette {
